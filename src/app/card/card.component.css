@@ -1,0 +1,31 @@
+.card{
+    width: 200px;
+    height: 100px;
+    padding: 20px;
+    margin-bottom: 20px ;
+}
+
+mat-icon{
+        font-size: 28px;
+}
+
+.content h3,h5{
+    font-weight: 900;
+    font-family: larger;
+}
+
+.orange{
+    background-color: orange;
+}
+
+.green{
+    background-color: green;
+}
+
+.red{
+    background-color: red;
+}
+
+.blue{
+    background-color: rgb(0, 140, 255);
+}

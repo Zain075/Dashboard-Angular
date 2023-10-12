@@ -1,0 +1,26 @@
+img{
+    width: 245px;
+    height: 200px;
+    border: 3px ridge black;
+}
+
+h1,p{
+    text-align: center;
+    font-weight: 800;
+}
+
+.pages{
+    display: flex;
+    flex-direction: column;
+}
+a{
+    color: rgb(42, 104, 165);
+    text-decoration: none;
+    padding-left: 20px;
+    margin: 10px;
+}
+a:hover{
+    background-color: indigo;
+    color: white;
+    box-shadow: 1px 3px 1px whitesmoke;
+}

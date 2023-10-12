@@ -1,0 +1,259 @@
+    
+    DASHBOARD
+   ----------------------------------
+
+   1.Create a new project - ng new dasboard
+   2. Run the New Project - ng s --o
+   3. Clear the code in app.compononet.html
+   4. Install Angular Material - ng add @angular/material
+        --> install angular -  ng add @angular/material
+                    @import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
+       -->Add Button from material 
+            import api  in app.module.ts - import {MatButtonModule} from '@angular/material/button';
+
+            imports: [
+                 MatButtonModule
+             ]
+
+
+
+
+    5. Create html pages or components
+       --> header - ng g c header
+       --> footer - ng g c footer
+       --> sideBar - ng g c sideBar
+       --> mainContent - ng g c mainContent 
+       --> card - ng g c card
+       --> areaChart - ng g c areaChart
+       --> table - ng g c table
+       --> pieChart - ng g c pieChart
+
+    6. Setup Path For Each Component - Routing
+        localhost:4200 -> localhost:4200/contactManager
+            --> Inside app-routing.module.ts file
+                    {
+    path:'',redirectTo:'ContactManager',pathMatch:'full'
+  },
+  //listing all contacts
+  {
+    path:'ContactManager',component:ContactManagerComponent
+  },
+  //ading new contacts 
+  {
+    path:'ContactManager/addContact',component:AddContactComponent
+  },
+  //view a particular contact
+  {
+    path:'ContactManager/view/:Id',component:ViewContactComponent
+  },
+  //edit a particular detail
+  {
+    path:'ContactManager/edit/:contactId',component:EditContactComponent
+  }
+
+7.<router-outlet></router-outlet>
+    -page to view seperatly
+
+
+8. Create Header and Footer components
+    
+9.Design Full pages
+
+10.API INTEGRATION
+    To fetch data and display
+
+    -->Create a server display
+    -->Inside it, Create bd.json file
+    -->goto jsonPlaceholder - my json data - content
+
+  --> Create a package.json file - npm init
+  Update package.json as
+  -->"start" : "json server --watch db.json --port 3000"
+
+  -->install -  npm i json-server
+
+  --> run backend - npm start
+
+11. Create Model
+  -->Create a model folder in src
+  -->Inside in it, create myContact.ts file and myGroup.ts file
+
+12. Asynchronous Resolving
+      JS                  TS
+    Promise             Observable (rxjs - reactive extenson javascript) library
+
+    .then()             .subscribe()
+    .catch()            .catch()
+
+    Display all contact information API - get
+    View all contact information API - get
+    Update all contact information API - put
+    Delete all contact information API - delete
+
+13.Create Services
+  Services - pass data from one component to another if different component share the same data the we use to create a service 
+
+  to create a service --> ng g service-name --> ng g s services/api
+
+
+14.To get http methods for api fetching
+    --> Import HttpClientModule  in api.module.ts
+
+    import {HttpClientModule} from '@angular/comon/http';
+
+    import[
+      HttpClientModule
+    ]
+
+15. Dependency injection 
+      Data share between two dependent  classes 
+      -- It performs inside the contsructor
+
+      Constructor -> Is a spaecial member function 
+                  -> It execute first in the class
+
+      Syntax for Dependency Injection
+            constructor(acess-specifier variable-name : class-name){}
+
+16. ngOnInit
+        --> It is a lifecycle hook
+        --> Starting stage of a compnonet creation 
+        
+
+17. Data Binding - Data sharing inside a component (ts,html)
+      1. One way data binding(ts->html or html to ts)
+            (i) Component to view (ts-> html)
+                  String interpolation - {{variable-name}} (inside in html)
+                  Property binding - [attribute name] = "property-name"
+
+            (ii) View to Component (html to ts)
+
+                  (1) Event binding - (event name) = "function-name"
+
+                  Events
+                  ->events are "things" that happen to HTML elemnts
+                  ->An HTML webpage has finished loading
+                  ->An HTMl INPUT field was changed 
+                  ->An HTML button was clicked
+                  ->onchange An HTML element has been changed
+                  ->onclick The user clicks in an HTML eLement     
+                  
+
+                  (2)Event Binding Using $event                                         
+
+                  ->$event is used in function argument
+                  ->(event-name)="function-name($event)" (hmtl)
+                  ->function-name(event) (ts)
+
+                  (3)Two way Data Binding
+                  ->ngModel   -  [(ngModel)]="property-name"
+                                -nggModel imports in app.module.ts - FormsModule 
+                                Creates a FormControl instance from a 
+                                domain model and binds it to a form control element.
+                                -> add this to input tag also put name attribute in it.
+
+
+18. Directives - To manipulate DOM 
+      1. Component Directives
+      2. Structural Directives
+         -->  *ngIf = "condition"
+
+         -->  *ngFor = "let var=name of array-name"
+         
+19. ActivatedRoute (CLASS)
+      Provides access to information about a route associated with a component that is loaded in an outlet.
+      Use to traverse the RouterState tree and extract information from nodes.         
+
+      --> Parameters
+            -params : An observable of the matrix parameters scoped to this route.
+
+20. Transforming Data Using Pipes
+          Pipes are simple functions to use in template expressions to accept an 
+          input value and return a transformed value   
+
+          eg: DatePipe - Formats a date value according to locale rules.
+              UpperCasePipe - Transforms text to all upper case  
+
+              --> Create a pipe - ng g p pipe/filter     
+
+21. Router (class)
+        A service that provides navigation among views
+        and URL manipulation capabilities
+    -navigateByUrl()
+        Navigates to  a view using an absolute route path  
+
+22.Decorator
+    Decorators to Provide metadata to a class declaration, method, accessor, property, or parameter in Angular.
+     We use it at many places in our Angular App. 
+    We use it to decorate components, directives, Angular Modules, etc.
+-->Class Decorators
+      @NgModule
+      @Component
+      @Injectable
+      @Directive
+      @Pipe
+--> Property Decorators
+      @Input
+      @Output
+      @ContentChild & @ContentChildren
+      @ViewChild & @ViewChildren
+      @HostBinding
+-->Method decorators
+      @HostListener
+-->Parameter decorators
+      @Inject
+      @Host
+      @Self
+      @SkipSelf
+      @Optional
+-->Custom Decorators
+
+
+23. (I) parent-child Communication (compnonets)
+
+    (1) chgild to parent communication 
+        -->output decorator - @output
+            child - header
+            parent - main
+            parent - app component
+      -->@Output
+            Output decorates the property as the output property. We initialize it as an EventEmitter.
+            The child component raises the event and passes the data as the argument to the event.
+            The parent component listens to events using event binding and reads the data.
+
+      (II) Parent to child communication
+      --> @input
+                  Input decorator marks the property as the input property. 
+                  I.e it can receive data from the parent component. The parent component uses the property binding to bind it to a component property. 
+                  Whenever the value in the parent component changes angular updates the value in the child component. 
+
+24. matrial icons https://mui.com/material-ui/material-icons/
+
+25.Directives
+      The Angular directive helps us to manipulate the DOM.
+       You can change a DOM element’s appearance, behavior, or layout using the directives. They help you to extend HTML. 
+       The Angular directives are classified into three categories based on how they behave. 
+       They are Component, Structural, and Attribute Directives 
+
+       Types of directives
+       [1] compnonet Directives
+           
+       [2] Structural directives
+            -->ngFor
+                  Angular ngFor directive iterates over a collection of data like an array, list, etc, and creates an HTML element for each of the items from an HTML template. It helps us to build lists or tables to display tabular data in a nice way. 
+            -->ngSwitch
+                  The ngSwitch is an Angular structural directive, which allows us to add or remove DOM elements. It works in conjunction with ngSwitchcase, & ngSwitchDefault directives. It is similar to the switch statement of JavaScript. In this tutorial, we will look at the syntax of ngSwitch, ngSwitchcase & ngSwitchDefault
+            -->ngIf  
+                  The Angular ngIf is a Structural Directive that allows us to completely add or remove DOM Elements based on some condition.
+       [3] Attribute directives
+            -->ngModel
+            -->ngClass
+                  The Angular ngClass Directive is an Angular Attribute Directive, which allows us to add or remove CSS classes to an HTML element. ngClass makes adding a conditional class to an element easier, hence dynamically changing the styles at runtime
+            -->ngStyle 
+                  The Angular ngStyle directive allows us to set the many inline style of a HTML element using an expression. The expression can be evaluated at run time allowing us to dynamically change the style of our HTML element. 
+
+26. highcharts
+      Install - npm install highcharts-angular --save
+
+      chart designs https://www.highcharts.com/
+
